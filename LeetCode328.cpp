@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//想让1->2->3->4->5  变成 1->3->5->2->4
 struct ListNode{
 	int val;
 	ListNode* next;
@@ -13,13 +14,16 @@ ListNode* oddEvenList(ListNode* head){
 	}
 	ListNode* q = head->next;
 	ListNode* q_ = q;
-	while(p!=NULL && p->next!=NULL && q->next!=NULL){
+	while(p!=NULL && p->next!=NULL && q->next!=NULL){//当时这里出了好多segmentation fault,因为尝试print或执行很多NULL的Pointer
 			p->next = p->next->next;
 			q->next = q->next->next;
 			cout<<"q: "<<q->val<<endl;
 			p = p->next;
 			q = q->next;
 	}
+	//当时写了两个while loop,一个whileloop管p(p指向odd number),一个管q(even number)。先改p，再改q.
+	//发现不可行，因为改了p之后，q也会被改值
+	//所以要在同一个while loop里完成对p和q的修改
 	p->next = q_;
 	return f;
 }
