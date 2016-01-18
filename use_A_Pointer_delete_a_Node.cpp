@@ -17,9 +17,11 @@ struct ListNode {
  	// p = NULL;
  	ListNode* p = china;
  	ListNode* q = china;
-	delete p;
-	p = NULL;
- 	cout<<"china : "<<china->val<<endl;
+ 	china  = china->next;
+ 	delete p;
+ 	p = NULL;
+ 	cout<<"china : "<<china->val<<endl;//输出china的值是15
+ 	cout<<" q : "<<q->val<<endl;//输出q的值是20，所以删了p，改了china，但是q，还在那里
  	return 0;
 
  }
